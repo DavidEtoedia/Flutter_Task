@@ -74,8 +74,8 @@ class TextFormInput extends StatelessWidget {
         filled: true,
         errorStyle: Theme.of(context)
             .textTheme
-            .labelSmall
-            ?.copyWith(color: Colors.red, letterSpacing: 0.5, fontSize: 15),
+            .bodyMedium
+            ?.copyWith(color: Colors.red, fontSize: 13),
         iconColor: Colors.grey,
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

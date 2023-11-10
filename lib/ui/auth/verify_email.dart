@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/ui/auth/widgets/topheader.dart';
-import 'package:flutter_task/ui/main_navigation.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
 import 'package:flutter_task/utils/app_images.dart';
 import 'package:flutter_task/utils/button/main_button.dart';
-import 'package:flutter_task/utils/navigator/navigator.dart';
+import 'package:flutter_task/utils/dialog/alert_screen_util.dart';
 import 'package:flutter_task/utils/spacer.dart';
 import 'package:pinput/pinput.dart';
 
@@ -112,8 +111,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                 const Space(20),
                 MainButton(
                     onPressed: () {
-                      //  ScreenAlertView.showSuccessDialog(context: context);
-                      context.navigateReplaceRoot(const MainNavigation());
+                      ScreenAlertView.showSuccessDialog(context: context);
                     },
                     text: "Verify"),
                 const Space(10),

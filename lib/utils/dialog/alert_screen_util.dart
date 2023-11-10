@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_task/ui/main_navigation.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
 import 'package:flutter_task/utils/app_images.dart';
@@ -61,6 +62,8 @@ class ScreenAlertView {
                             radius: 10,
                             onPressed: () {
                               Navigator.pop(navigator.key.currentContext!);
+                              context
+                                  .navigateReplaceRoot(const MainNavigation());
                             }),
                       )
                     ],
