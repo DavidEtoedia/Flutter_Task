@@ -10,6 +10,21 @@ class AppImage {
   static const facebook = "assets/images/facebook.png";
   static const google = "assets/images/google.png";
 
+  // MORE ICONS
+  static const bookmark = "assets/images/bookmark.png";
+  static const donate = "assets/images/donate.png";
+  static const download = "assets/images/download.png";
+  static const help = "assets/images/help.png";
+  static const history = "assets/images/history.png";
+  static const info = "assets/images/info.png";
+  static const notification = "assets/images/notification.png";
+  static const settings = "assets/images/settings.png";
+  static const logout = "assets/images/logout.png";
+  static const edit = "assets/images/edit.png";
+  static const camera = "assets/images/camera.png";
+  static const profile = "assets/images/profile.png";
+  static const star = "assets/images/star.png";
+
   // OTHER IMAGE
   static const verify = "assets/images/verify.png";
   static const success = "assets/images/success.png";

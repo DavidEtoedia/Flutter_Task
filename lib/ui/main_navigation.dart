@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/ui/screens/home/home_page.dart';
+import 'package:flutter_task/ui/screens/more/more_screen.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_images.dart';
 
@@ -18,7 +19,7 @@ class _MainNavigationState extends State<MainNavigation> {
     const Placeholder(),
     const Placeholder(),
     const Placeholder(),
-    const Placeholder(),
+    const MoreScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -61,6 +62,13 @@ class _MainNavigationState extends State<MainNavigation> {
                   color: AppColors.primaryColor,
                 ),
                 label: 'Sermon'),
+            BottomNavigationBarItem(
+                icon: Image.asset(AppImage.search),
+                activeIcon: Image.asset(
+                  AppImage.search,
+                  color: AppColors.primaryColor,
+                ),
+                label: 'Explore'),
             BottomNavigationBarItem(
                 icon: Image.asset(AppImage.more),
                 activeIcon: Image.asset(

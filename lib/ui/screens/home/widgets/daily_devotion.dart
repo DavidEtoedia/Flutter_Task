@@ -14,7 +14,7 @@ class DailDevotion extends StatelessWidget {
           "Daily Devotional",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: AppFontWeight.medium,
               ),
         ),
@@ -32,7 +32,7 @@ class DailDevotion extends StatelessWidget {
           "How to live in Victory",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Colors.black,
-                fontSize: 15,
+                fontSize: 14,
                 fontWeight: AppFontWeight.medium,
               ),
         ),

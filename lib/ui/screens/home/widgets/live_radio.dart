@@ -18,7 +18,7 @@ class LiveRadio extends StatelessWidget {
           "Live Radio",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: AppFontWeight.medium,
               ),
         ),
