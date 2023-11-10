@@ -60,7 +60,7 @@ class MoreScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () => context.navigate(EdifProfileScreen()),
+                    onTap: () => context.navigate(const EdifProfileScreen()),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

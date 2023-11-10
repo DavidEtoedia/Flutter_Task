@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/ui/screens/more/button_model.dart';
+import 'package:flutter_task/ui/screens/more/screens/About/about_us_screen.dart';
+import 'package:flutter_task/ui/screens/more/screens/donate_screen.dart';
+import 'package:flutter_task/ui/screens/more/screens/help&support/help_support_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/notification_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/settings/settings_screen.dart';
 import 'package:flutter_task/utils/app_color.dart';
+import 'package:flutter_task/utils/dialog/alert_screen_util.dart';
 import 'package:flutter_task/utils/navigator/navigator.dart';
 import 'package:flutter_task/utils/spacer.dart';
 
@@ -27,17 +31,11 @@ class MoreButtons extends StatelessWidget {
                       break;
 
                     case "Bookmarks":
-
-                      // context.navigate(const StatementOfAcctScreen());
                       break;
 
                     case "Downloads":
-
-                      // context.navigate(const SecurityScreen());
                       break;
                     case "History/Recent Activity":
-
-                      // context.navigate(const BankAccountScreen());
                       break;
 
                     case "Settings":
@@ -45,14 +43,20 @@ class MoreButtons extends StatelessWidget {
 
                       break;
 
-                    case "Help":
-
-                      // context.navigate(const HelpScreen());
+                    case "About us":
+                      context.navigate(const AboutUsScreen());
                       break;
 
-                    case "Refer and Earn":
+                    case "Help & support":
+                      context.navigate(const HelpAndSupportScreen());
+                      break;
+                    case "Donate":
+                      context.navigate(const DonateScreen());
+                      break;
 
-                      // context.navigate(const ReferAndEarnScreen());
+                    case "Log out":
+                      ScreenAlertView.showLogoutDialog(context: context);
+
                       break;
 
                     default:

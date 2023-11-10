@@ -5,7 +5,6 @@ import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
 import 'package:flutter_task/utils/app_images.dart';
 import 'package:flutter_task/utils/button/main_button.dart';
-import 'package:flutter_task/utils/dialog/alert_screen_util.dart';
 import 'package:flutter_task/utils/navigator/navigator.dart';
 import 'package:flutter_task/utils/spacer.dart';
 import 'package:pinput/pinput.dart';

@@ -24,13 +24,27 @@ class AppImage {
   static const camera = "assets/images/camera.png";
   static const profile = "assets/images/profile.png";
   static const star = "assets/images/star.png";
+  static const aboutus = "assets/images/aboutus.png";
+  static const abouts = "assets/images/abouts.jpg";
 
-  // OTHER IMAGE
+  // OTHER ICONS
   static const verify = "assets/images/verify.png";
   static const success = "assets/images/success.png";
   static const play = "assets/images/play.png";
   static const audio = "assets/images/audio.png";
   static const musicSign = "assets/images/music_sign.png";
+  static const church = "assets/images/church.png";
+  static const heart = "assets/images/heart.png";
+  static const prayer = "assets/images/prayer.png";
+  static const support = "assets/images/support.png";
+  static const partner = "assets/images/partner.png";
+  static const logoutImage = "assets/images/log_out.png";
+  static const close = "assets/images/close.png";
+
+  // HELP & SUPPORT
+  static const chat = "assets/images/chat.png";
+  static const mail = "assets/images/mail.png";
+  static const faq = "assets/images/faq.png";
 
   // BOTTOM NAVIGATION
   static const home = "assets/images/home.png";

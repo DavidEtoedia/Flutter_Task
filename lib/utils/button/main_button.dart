@@ -7,36 +7,46 @@ import 'package:flutter_task/utils/spacer.dart';
 class MainButton extends StatelessWidget {
   final void Function()? onPressed;
   final String text;
-  final String amount;
   final Color color;
   final bool isLoading;
   final bool withBorder;
   final Color textColor;
-  const MainButton(
-      {super.key,
-      required this.onPressed,
-      required this.text,
-      this.withBorder = false,
-      this.isLoading = false,
-      this.textColor = Colors.white,
-      this.color = AppColors.primaryColor,
-      this.amount = ""});
+  final Color borderColor;
+  final double height;
+
+  final double fontSize;
+
+  const MainButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.withBorder = false,
+    this.isLoading = false,
+    this.height = 50,
+    this.fontSize = 17,
+    this.textColor = Colors.white,
+    this.borderColor = Colors.white,
+    this.color = AppColors.primaryColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: height,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
+          shadowColor: Colors.transparent,
           backgroundColor: color,
           shape: RoundedRectangleBorder(
             side: withBorder
-                ? const BorderSide(width: 1.5, color: Colors.white)
+                ? BorderSide(width: 1.5, color: borderColor)
                 : BorderSide.none,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
           ),
           elevation: 0,
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,16 +64,8 @@ class MainButton extends StatelessWidget {
                 text,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: textColor,
-                    fontSize: 17,
+                    fontSize: fontSize,
                     fontWeight: AppFontWeight.bold),
-              ),
-              const Space(2),
-              Text(
-                amount,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700),
               ),
             ]
           ],
@@ -142,41 +144,6 @@ class ClickableText extends StatelessWidget {
                 ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SmallButton extends StatelessWidget {
-  final String text;
-  final Color color;
-  final double textSize;
-  final bool withIcon;
-  final void Function()? onPressed;
-  const SmallButton(
-      {super.key,
-      required this.color,
-      required this.text,
-      this.withIcon = false,
-      this.textSize = 13.5,
-      required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      splashColor: Colors.green,
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: color,
-                fontSize: textSize,
-                letterSpacing: 0.6,
-                fontWeight: FontWeight.w500,
-              ),
-        ),
       ),
     );
   }

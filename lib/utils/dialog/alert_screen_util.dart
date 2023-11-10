@@ -70,55 +70,77 @@ class ScreenAlertView {
             ));
   }
 
-  static Future<String> showAlertDialog<String>({
-    required BuildContext context,
-    required Widget content,
-    required List<Widget> action,
-  }) async {
-    final res = await showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content: content,
-        actions: action,
-      ),
-    );
-    return Future.value(res);
-  }
-
-  static showInfo(
-      {required BuildContext context,
-      String message = "",
-      String title = "Oops",
-      required VoidCallback press}) {
+  static showLogoutDialog(
+      {required BuildContext context, String errorText = ""}) {
     showDialog(
         context: context,
         barrierDismissible: false,
-        barrierColor: Colors.black26,
+        barrierColor: Colors.white.withOpacity(0.2),
         builder: (_) => BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+              filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
               child: AlertDialog.adaptive(
-                title: Text(title,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.black,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5)),
-                content: Text(
-                  message,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      height: 1.5),
-                ),
-                actions: <Widget>[
-                  ClickableText(
-                      color: Colors.black,
-                      text: "Ok",
-                      textSize: 16,
-                      onPressed: press)
-                ],
-              ),
+                  shadowColor: Colors.grey.shade100,
+                  backgroundColor: AppColors.dialog,
+                  insetPadding: const EdgeInsets.only(left: 50, right: 50),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: Image.asset(AppImage.close)),
+                      const Space(15),
+                      Center(child: Image.asset(AppImage.logoutImage)),
+                      const Space(10),
+                      Center(
+                        child: Text("Logout",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 25,
+                                    fontWeight: AppFontWeight.bold,
+                                    height: 1.5)),
+                      ),
+                      const Space(15),
+                      Text(
+                          "You can always log back in any time. If you just want to switch accounts, you can add another account.",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: AppFontWeight.regular,
+                                  height: 1.5)),
+                      const Space(25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MainButton(
+                              height: 35,
+                              fontSize: 12,
+                              withBorder: true,
+                              color: Colors.transparent,
+                              borderColor: Colors.black38,
+                              textColor: Colors.black,
+                              onPressed: () => Navigator.pop(context),
+                              text: "Cancel"),
+                          const Spacer(),
+                          MainButton(
+                              height: 35,
+                              fontSize: 12,
+                              color: Colors.red,
+                              onPressed: () {},
+                              text: "logout")
+                        ],
+                      ),
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12))),
             ));
   }
 }
