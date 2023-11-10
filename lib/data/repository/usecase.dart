@@ -14,6 +14,6 @@ class AuthUsecase {
   Future<void> updateEmail(String email) => _repository.updateEmail(email);
   Future<void> updateAvatar(String url) => _repository.updateAvatar(url);
 
-  Stream<User?> authChangeToken() => _repository.authTokenChange();
   Stream<User?> userStateChange() => _repository.userStateChange();
+  Future<void> signOut() => _repository.signOut();
 }

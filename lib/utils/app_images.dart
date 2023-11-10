@@ -26,6 +26,7 @@ class AppImage {
   static const star = "assets/images/star.png";
   static const aboutus = "assets/images/aboutus.png";
   static const abouts = "assets/images/abouts.jpg";
+  static const avatar = "assets/images/user.png";
 
   // OTHER ICONS
   static const verify = "assets/images/verify.png";

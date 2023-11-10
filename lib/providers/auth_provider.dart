@@ -13,10 +13,6 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthServiceImpl(ref.watch(authServiceProvider));
 });
 
-final authStateProvider = StreamProvider<User?>((ref) {
-  return ref.read(authRepositoryProvider).authTokenChange();
-});
-
 final authUserProvider = StreamProvider.autoDispose<User?>((ref) {
   return ref.read(authRepositoryProvider).userStateChange();
 });

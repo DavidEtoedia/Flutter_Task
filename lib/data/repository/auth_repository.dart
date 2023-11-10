@@ -6,6 +6,7 @@ abstract class AuthRepository {
   Future<void> updateName(String name);
   Future<void> updateEmail(String email);
   Future<void> updateAvatar(String url);
-  Stream<User?> authTokenChange();
+
   Stream<User?> userStateChange();
+  Future<void> signOut();
 }

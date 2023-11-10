@@ -11,13 +11,6 @@ class TopHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios_outlined,
-            size: 20,
-          ),
-        ),
         const Space(20),
         Text(
           text,

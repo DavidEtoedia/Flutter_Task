@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/ui/auth/login/login_screen.dart';
+import 'package:flutter_task/ui/auth/register/register_screen.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
 import 'package:flutter_task/utils/app_images.dart';
@@ -73,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   const Spacer(),
                   MainButton(
-                    onPressed: () {},
+                    onPressed: () => context.navigate(const RegisterScreen()),
                     text: "Register",
                     textColor: Colors.black,
                     color: Colors.white,

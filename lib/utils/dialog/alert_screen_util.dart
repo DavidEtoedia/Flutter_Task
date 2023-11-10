@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_task/ui/auth/login/login_screen.dart';
 import 'package:flutter_task/ui/main_navigation.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
@@ -74,8 +75,8 @@ class ScreenAlertView {
   }
 
   static showLogoutDialog(
-      {required BuildContext context, String errorText = ""}) {
-    showDialog(
+      {required BuildContext context, String errorText = ""}) async {
+    final res = await showDialog(
         context: context,
         barrierDismissible: false,
         barrierColor: Colors.white.withOpacity(0.2),
@@ -129,14 +130,18 @@ class ScreenAlertView {
                               color: Colors.transparent,
                               borderColor: Colors.black38,
                               textColor: Colors.black,
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => Navigator.pop(context, false),
                               text: "Cancel"),
                           const Spacer(),
                           MainButton(
                               height: 35,
                               fontSize: 12,
                               color: Colors.red,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                                context
+                                    .navigateReplaceRoot(const LoginScreen());
+                              },
                               text: "logout")
                         ],
                       ),
@@ -145,5 +150,7 @@ class ScreenAlertView {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12))),
             ));
+
+    return res;
   }
 }

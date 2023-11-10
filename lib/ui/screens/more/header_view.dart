@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/providers/auth_provider.dart';
+import 'package:flutter_task/ui/screens/more/screens/profile/profile_image.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
 import 'package:flutter_task/utils/app_images.dart';
@@ -24,20 +25,16 @@ class HeaderCard extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8)),
               child: Row(
                 children: [
-                  Container(
+                  const ProfileImage(
                     height: 50,
                     width: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                        border: Border.all(width: 2.0, color: Colors.white)),
                   ),
                   const Space(10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        data!.displayName.valueOrNull(),
+                        data == null ? "" : data.displayName.valueOrNull(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: Colors.white,
@@ -46,7 +43,7 @@ class HeaderCard extends ConsumerWidget {
                             ),
                       ),
                       Text(
-                        data.email.toString(),
+                        data == null ? "" : data.email.valueOrNull(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: Colors.white,
@@ -59,8 +56,8 @@ class HeaderCard extends ConsumerWidget {
                   const Spacer(),
                   InkWell(
                     onTap: () => context.navigate(EdifProfileScreen(
-                      name: data.displayName ?? "",
-                      email: data.email.toString(),
+                      name: data?.displayName ?? "",
+                      email: data!.email.toString(),
                     )),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,

@@ -30,8 +30,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final TextEditingController name = TextEditingController();
 
   handleReq() {
-    if (email.text.isEmpty || password.text.isEmpty || name.text.isEmpty)
+    if (email.text.isEmpty || password.text.isEmpty || name.text.isEmpty) {
       return;
+    }
     ref
         .read(registerControllerProvider.notifier)
         .register(email.text, password.text, name.text);

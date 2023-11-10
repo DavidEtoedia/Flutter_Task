@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task/data/shared/shared_pref.dart';
 import 'package:flutter_task/ui/screens/more/button_model.dart';
 import 'package:flutter_task/ui/screens/more/screens/About/about_us_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/donate_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/help&support/help_support_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/notification_screen.dart';
 import 'package:flutter_task/ui/screens/more/screens/settings/settings_screen.dart';
+import 'package:flutter_task/ui/screens/more/vm/log_out_vm.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/dialog/alert_screen_util.dart';
 import 'package:flutter_task/utils/navigator/navigator.dart';
 import 'package:flutter_task/utils/spacer.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MoreButtons extends StatelessWidget {
+class MoreButtons extends ConsumerWidget {
   const MoreButtons({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Expanded(
         child: ListView.separated(
             physics: const AlwaysScrollableScrollPhysics(
@@ -24,7 +27,7 @@ class MoreButtons extends StatelessWidget {
               final settings = moreButton[index];
               return InkWell(
                 splashColor: AppColors.primaryColor.withOpacity(0.1),
-                onTap: () {
+                onTap: () async {
                   switch (settings.name) {
                     case "Notification":
                       context.navigate(const NotificationScreen());
@@ -55,7 +58,13 @@ class MoreButtons extends StatelessWidget {
                       break;
 
                     case "Log out":
-                      ScreenAlertView.showLogoutDialog(context: context);
+                      bool res = await ScreenAlertView.showLogoutDialog(
+                          context: context);
+
+                      if (res) {
+                        SharedPrefManager.isLoggedIn = false;
+                        ref.read(logoutControllerProvider.notifier).logOut();
+                      }
 
                       break;
 

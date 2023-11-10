@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/utils/app_color.dart';
+import 'package:flutter_task/providers/auth_provider.dart';
+import 'package:flutter_task/ui/screens/more/screens/profile/profile_image.dart';
 import 'package:flutter_task/utils/app_font.dart';
+import 'package:flutter_task/utils/extension.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends ConsumerWidget {
   const HomeHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final user = ref.watch(authUserProvider);
+
     return Row(
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello, Mercy",
+              "Hello, ${user.value?.displayName.valueOrNull()}",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.black,
                     fontSize: 20,
@@ -31,14 +36,10 @@ class HomeHeader extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        Container(
+        const ProfileImage(
           height: 50,
           width: 50,
-          decoration: BoxDecoration(
-              color: Colors.grey,
-              shape: BoxShape.circle,
-              border: Border.all(width: 3.0, color: AppColors.primaryColor)),
-        )
+        ),
       ],
     );
   }

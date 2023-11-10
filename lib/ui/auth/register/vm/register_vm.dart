@@ -1,4 +1,5 @@
 import 'package:flutter_task/data/repository/usecase.dart';
+import 'package:flutter_task/data/shared/shared_pref.dart';
 import 'package:flutter_task/providers/auth_provider.dart';
 import 'package:flutter_task/ui/auth/register/vm/register_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,6 +14,8 @@ class RegisterController extends StateNotifier<RegisterState> {
     try {
       await authUsecase.createUser(email, password, name);
       state = const RegisterStateSuccess();
+      SharedPrefManager.isFirstLaunch = false;
+      SharedPrefManager.isLoggedIn = true;
     } catch (e) {
       state = RegisterStateError(e.toString());
     }

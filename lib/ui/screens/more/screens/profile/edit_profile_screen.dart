@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task/ui/screens/more/screens/profile/image/image_picker_controller.dart';
+import 'package:flutter_task/ui/screens/more/screens/profile/image/vm/upload_image_vm.dart';
+import 'package:flutter_task/ui/screens/more/screens/profile/image/vm/upload_state.dart';
 import 'package:flutter_task/utils/app_bar.dart';
 import 'package:flutter_task/utils/button/main_button.dart';
 import 'package:flutter_task/utils/navigator/navigator.dart';
@@ -25,6 +28,8 @@ class _EdifProfileScreenState extends ConsumerState<EdifProfileScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
 
+  String? selectedImage;
+
   @override
   void initState() {
     email = TextEditingController(text: widget.email);
@@ -43,6 +48,7 @@ class _EdifProfileScreenState extends ConsumerState<EdifProfileScreen> {
   Widget build(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
     final edit = ref.watch(editProfileControllerProvider);
+    final upload = ref.watch(uploadControllerProvider);
     ref.listen<UpdateState>(editProfileControllerProvider, ((previous, state) {
       if (state is UpdateStateError) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -50,6 +56,14 @@ class _EdifProfileScreenState extends ConsumerState<EdifProfileScreen> {
         ));
       } else if (state is UpdateStateSuccess) {
         context.popToFirst();
+      }
+    }));
+
+    ref.listen<UploadState>(uploadControllerProvider, ((previous, state) {
+      if (state is UploadStateError) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(state.error),
+        ));
       }
     }));
 
@@ -61,16 +75,30 @@ class _EdifProfileScreenState extends ConsumerState<EdifProfileScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: AbsorbPointer(
-          absorbing: edit is UpdateStateLoading ? true : false,
+          absorbing: (edit is UpdateStateLoading ? true : false) ||
+              (upload is UploadStateLoading ? true : false),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                const Center(
+                Center(
                   child: ProfileImage(
                     height: 130,
                     width: 130,
                     isProfile: true,
+                    isLoading: upload is UploadStateLoading ? true : false,
+                    imageUrl: selectedImage,
+                    onTap: () async {
+                      final image = await MediaClass.pickImage();
+
+                      setState(() => selectedImage = image);
+
+                      if (image == null) return;
+
+                      ref
+                          .read(uploadControllerProvider.notifier)
+                          .uploadAvatar(image);
+                    },
                   ),
                 ),
                 const Space(30),

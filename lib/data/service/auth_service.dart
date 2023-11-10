@@ -28,10 +28,6 @@ class AuthService {
     }
   }
 
-  Stream<User?> authTokenChange() {
-    return _auth.idTokenChanges();
-  }
-
   Stream<User?> userStateChange() {
     return _auth.authStateChanges();
   }
@@ -57,42 +53,28 @@ class AuthService {
   Future<void> updateName(String name) async {
     try {
       await _auth.currentUser?.updateDisplayName(name);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
-        throw AuthException('User does not exist');
-      } else if (e.code == 'wrong-password') {
-        throw AuthException('Wrong password');
-      } else {
-        throw AuthException('An error occured. Please try again later');
-      }
+    } on FirebaseAuthException catch (_) {
+      throw AuthException('An error occured. Please try again later');
     }
   }
 
   Future<void> updateEmail(String email) async {
     try {
       await _auth.currentUser?.updateEmail(email);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
-        throw AuthException('User does not exist');
-      } else if (e.code == 'wrong-password') {
-        throw AuthException('Wrong password');
-      } else {
-        throw AuthException('An error occured. Please try again later');
-      }
+    } on FirebaseAuthException catch (_) {
+      throw AuthException('An error occured. Please try again later');
     }
   }
 
   Future<void> updateAvatar(String url) async {
     try {
       await _auth.currentUser?.updatePhotoURL(url);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
-        throw AuthException('User does not exist');
-      } else if (e.code == 'wrong-password') {
-        throw AuthException('Wrong password');
-      } else {
-        throw AuthException('An error occured. Please try again later');
-      }
+    } on FirebaseAuthException catch (_) {
+      throw AuthException('An error occured. Please try again later');
     }
+  }
+
+  Future<void> signOut() async {
+    await _auth.signOut();
   }
 }

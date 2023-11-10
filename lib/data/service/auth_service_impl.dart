@@ -8,9 +8,6 @@ class AuthServiceImpl implements AuthRepository {
   AuthServiceImpl(this._service);
 
   @override
-  Stream<User?> authTokenChange() => _service.authTokenChange();
-
-  @override
   Future<User?> createUser(String email, String password, String name) =>
       _service.createUser(email, password, name);
 
@@ -29,4 +26,7 @@ class AuthServiceImpl implements AuthRepository {
 
   @override
   Future<void> updateName(String name) => _service.updateName(name);
+
+  @override
+  Future<void> signOut() => _service.signOut();
 }
