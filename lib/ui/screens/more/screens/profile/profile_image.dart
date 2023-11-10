@@ -39,7 +39,7 @@ class ProfileImage extends HookConsumerWidget {
         child: SizedBox(
             height: height,
             width: width,
-            child: (image!.photoURL == null)
+            child: (image == null || image.photoURL == null)
                 ? Container(
                     height: height,
                     width: width,
