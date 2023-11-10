@@ -46,7 +46,7 @@ class MainButton extends StatelessWidget {
           ),
           elevation: 0,
           padding:
-              const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
+              const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

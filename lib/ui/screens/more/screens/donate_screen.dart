@@ -57,7 +57,7 @@ class DonateScreen extends StatelessWidget {
                           height: 40,
                           color: AppColors.secondaryColor,
                           onPressed: () {},
-                          text: "  Donate  "),
+                          text: "Donate"),
                       const Spacer(),
                       MainButton(
                           height: 40,
