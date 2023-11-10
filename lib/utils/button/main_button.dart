@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/utils/app_color.dart';
 import 'package:flutter_task/utils/app_font.dart';
+import 'package:flutter_task/utils/app_images.dart';
 import 'package:flutter_task/utils/spacer.dart';
 
 class MainButton extends StatelessWidget {
@@ -79,12 +80,14 @@ class ClickableText extends StatelessWidget {
   final Color bgColor;
   final double radius;
   final bool underline;
+  final bool withIcon;
   final bool isBold;
   final void Function()? onPressed;
   const ClickableText(
       {super.key,
       required this.color,
       required this.text,
+      this.withIcon = false,
       this.bgColor = Colors.transparent,
       this.textSize = 15.0,
       this.underline = false,
@@ -107,22 +110,38 @@ class ClickableText extends StatelessWidget {
         shadowColor: Colors.transparent,
         splashFactory: NoSplash.splashFactory,
         surfaceTintColor: Colors.transparent,
+        padding:
+            const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
         textStyle: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: textSize,
         ),
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: color,
-              fontSize: textSize,
-              fontWeight: isBold ? AppFontWeight.bold : AppFontWeight.medium,
-              decoration:
-                  underline ? TextDecoration.underline : TextDecoration.none,
-              decorationColor: AppColors.primaryColor,
-              decorationThickness: 2,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (withIcon) ...[
+            Image.asset(
+              AppImage.play,
+              color: Colors.white,
             ),
+            const Space(10),
+          ],
+          Text(
+            text,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: color,
+                  fontSize: textSize,
+                  fontWeight:
+                      isBold ? AppFontWeight.bold : AppFontWeight.medium,
+                  decoration: underline
+                      ? TextDecoration.underline
+                      : TextDecoration.none,
+                  decorationColor: AppColors.primaryColor,
+                  decorationThickness: 2,
+                ),
+          ),
+        ],
       ),
     );
   }
