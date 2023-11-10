@@ -20,8 +20,6 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         throw AuthException('Email already in use');
-      } else if (e.code == 'wrong-password') {
-        throw AuthException('Wrong password');
       } else {
         throw AuthException('An error occured. Please try again later');
       }
